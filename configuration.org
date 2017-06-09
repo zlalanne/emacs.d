@@ -321,6 +321,21 @@ Set =python-mode= when editing Bazel files
   (zl/add-auto-mode 'python-mode "WORKSPACE$")
 #+END_SRC
 
+** Ansible
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t)
+  (use-package ansible
+    :ensure t)
+#+END_SRC
+
+Assume when editing =yaml= files it's Ansible related
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+#+END_SRC emacs-lisp
+
 * Org-mode
 ** Display Preferences
 
