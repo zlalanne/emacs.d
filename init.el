@@ -13,7 +13,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode ansible use-package solarized-theme ox-twbs org-bullets neotree markdown-mode helm evil diff-hl company all-the-icons))))
+    (evil-magit yaml-mode ansible use-package solarized-theme ox-twbs org-bullets neotree markdown-mode helm evil diff-hl company all-the-icons))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
