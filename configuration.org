@@ -59,7 +59,7 @@ Define a big ol' bunch of handy utility functions.
                          ("\u2122" . "TM")
                          ("[\u02DC\|\u00A0]" . " "))))
       (save-excursion
-        (loop for (key . value) in unicode-map
+        (cl-loop for (key . value) in unicode-map
               do
               (goto-char (point-min))
               (replace-regexp key value)))))
@@ -75,7 +75,6 @@ Define a big ol' bunch of handy utility functions.
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :ensure t)
-  (require 'evil)
   (evil-mode 1)
 #+END_SRC
 
@@ -176,7 +175,6 @@ programming.
 #+BEGIN_SRC emacs-lisp
   (use-package diff-hl
     :ensure t)
-  (require 'diff-hl)
 
   (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
   (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
@@ -202,8 +200,7 @@ Highlight any trailing whitespace. Set the background color to the "Solarized Da
 #+BEGIN_SRC emacs-lisp
   (use-package helm
     :ensure t)
-  (require 'helm)
-
+  (helm-mode 1)
 #+END_SRC
 
 * Editing
@@ -225,13 +222,12 @@ I futz around with my dotfiles a lot. This binds C-c e to quickly open my Emacs 
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t)
-  (require 'company)
   (add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
 
 ** Always indent with spaces
 
-Never use tabs. Tabs are the devil’s whitespace.
+Never use tabs. Tabs are the devil's whitespace.
 
 #+BEGIN_SRC emacs-lisp
   (setq-default indent-tabs-mode nil)
@@ -256,7 +252,6 @@ Associate =.md= files with GitHub-flavored Markdown.
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
     :ensure t)
-  (require 'markdown-mode)
   (zl/add-auto-mode 'gfm-mode "\\.md$")
 #+END_SRC
 
@@ -278,7 +273,6 @@ Sometimes, though, I don't wanna wrap text. This toggles wrapping with =C-c q=:
   (global-set-key (kbd "C-c q") 'auto-fill-mode)
 #+END_SRC
 
-
 * Org-mode
 ** Display Preferences
 
@@ -287,7 +281,6 @@ I like to see an outline of pretty bullets instead of a list of asterisks.
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t)
-  (require 'org-bullets)
   (add-hook 'org-mode-hook
     (lambda ()
         (org-bullets-mode t)))
@@ -326,7 +319,6 @@ I prefer to have some additional custom states for tasks.
 #+BEGIN_SRC emacs-lisp
   (use-package ox-twbs
     :ensure t)
-  (require 'ox-twbs)
 #+END_SRC
 
 *** Exporting to HTML
