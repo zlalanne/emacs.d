@@ -15,7 +15,6 @@ Use [[https://github.com/hrs/sensible-defaults.el][sensible-defaults.el]] for so
 
 * Require package.el
 
-
 #+BEGIN_SRC emacs-lisp
   (require 'package)
 #+END_SRC
@@ -175,6 +174,8 @@ Use the =diff-hl= package to highlight changed-and-uncommitted lines when
 programming.
 
 #+BEGIN_SRC emacs-lisp
+  (use-package diff-hl
+    :ensure t)
   (require 'diff-hl)
 
   (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
@@ -202,18 +203,50 @@ Highlight any trailing whitespace. Set the background color to the "Solarized Da
   (use-package helm
     :ensure t)
   (require 'helm)
+
 #+END_SRC
 
 * Editing
+
+** Quickly visit Emacs settings
+
+I futz around with my dotfiles a lot. This binds C-c e to quickly open my Emacs configuration file.
+
+#+BEGIN_SRC emacs-lisp
+  (defun zl/visit-emacs-config ()
+    (interactive)
+    (find-file "~/.emacs.d/configuration.org"))
+
+  (global-set-key (kbd "C-c e") 'zl/visit-emacs-config)
+#+END_SRC
+
+** Use =company-mode= everywhere
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t)
+  (require 'company)
+  (add-hook 'after-init-hook 'global-company-mode)
+#+END_SRC
+
+** Always indent with spaces
+
+Never use tabs. Tabs are the devil’s whitespace.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+#+END_SRC
 
 ** Spell Check
 
 I'm a terrible speller... turn on spell check for markdown, $\LaTeX$ and org-mode.
 
 #+BEGIN_SRC emacs-lisp
+  (add-hook 'markdown-mode-hook 'turn-on-flyspell)
   (add-hook 'org-mode-hook 'turn-on-flyspell)
   (add-hook 'gfm-mode-hook 'turn-on-flyspell)
   (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
+  (add-hook 'text-mode-hook 'turn-on-flyspell)
 #+END_SRC
 
 ** Markdown
@@ -221,8 +254,30 @@ I'm a terrible speller... turn on spell check for markdown, $\LaTeX$ and org-mod
 Associate =.md= files with GitHub-flavored Markdown.
 
 #+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t)
+  (require 'markdown-mode)
   (zl/add-auto-mode 'gfm-mode "\\.md$")
 #+END_SRC
+
+** Wrap paragraphs automatically
+
+=AutoFillMode= automatically wraps paragraphs, kinda like hitting =M-q=. I wrap
+a lot of paragraphs, so this automatically wraps 'em when I'm writing text,
+Markdown, or Org.
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'text-mode-hook 'turn-on-auto-fill)
+  (add-hook 'gfm-mode-hook 'turn-on-auto-fill)
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+#+END_SRC
+
+Sometimes, though, I don't wanna wrap text. This toggles wrapping with =C-c q=:
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c q") 'auto-fill-mode)
+#+END_SRC
+
 
 * Org-mode
 ** Display Preferences
@@ -272,4 +327,12 @@ I prefer to have some additional custom states for tasks.
   (use-package ox-twbs
     :ensure t)
   (require 'ox-twbs)
+#+END_SRC
+
+*** Exporting to HTML
+
+Don¡¯t include a footer with my contact and publishing information at the bottom of every exported HTML document.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-html-postamble nil)
 #+END_SRC
