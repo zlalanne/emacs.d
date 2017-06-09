@@ -312,7 +312,7 @@ Sometimes, though, I don't wanna wrap text. This toggles wrapping with =C-c q=:
 
 ** Bazel
 
-Set =py-mode= when editing Bazel files
+Set =python-mode= when editing Bazel files
 
 #+BEGIN_SRC emacs-lisp
   (zl/add-auto-mode 'python-mode "\\.bzl$")
