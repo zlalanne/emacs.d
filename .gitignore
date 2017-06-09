@@ -9,3 +9,9 @@
 
 # Undo-tree save-files
 *.~undo-tree
+
+# Elpa repo
+elpa
+
+# Ignore generated elisp config file
+configuration.el
