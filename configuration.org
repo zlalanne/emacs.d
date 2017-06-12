@@ -307,6 +307,15 @@ Sometimes, though, I don't wanna wrap text. This toggles wrapping with =C-c q=:
   (global-set-key (kbd "C-c q") 'auto-fill-mode)
 #+END_SRC
 
+* Programming
+** Flycheck
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+#+END_SRC
+
 ** Bazel
 
 Set =python-mode= when editing Bazel files
