@@ -273,6 +273,12 @@ I'm a terrible speller... turn on spell check for markdown, $\LaTeX$ and org-mod
   (add-hook 'text-mode-hook 'turn-on-flyspell)
 #+END_SRC
 
+Add flyspell for checking within comments of programming languages
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+#+END_SRC
+
 ** Markdown
 
 Associate =.md= files with GitHub-flavored Markdown.
