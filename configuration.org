@@ -198,7 +198,6 @@ Highlight any trailing whitespace. Set the background color to the "Solarized Da
 #+END_SRC
 
 * Sidebar Tree
-
 ** Nice Icons
 
 Get some nice icons for neotree.
@@ -233,14 +232,6 @@ Fix some keybindings conflicts with =evil-mode=
   (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
   (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
 #+END_SRC
-* Helm
-
-#+BEGIN_SRC emacs-lisp
-  (use-package helm
-    :ensure t)
-  (helm-mode 1)
-#+END_SRC
-
 * Editing
 ** Quickly visit Emacs settings
 
@@ -391,7 +382,55 @@ Don¡¯t include a footer with my contact and publishing information at the bott
 #+BEGIN_SRC emacs-lisp
   (setq org-html-postamble nil)
 #+END_SRC
-* Git
+* Project Management
+** Helm
+
+#+BEGIN_SRC emacs-lisp
+  (use-package helm
+    :ensure t)
+  (helm-mode 1)
+#+END_SRC
+
+** Projectile
+
+Use projectile to better manage projects
+
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :ensure t)
+  (projectile-global-mode)
+#+END_SRC
+
+Setup projectile/Helm integration
+
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-projectile
+    :ensure t)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on)
+#+END_SRC
+
+Discover all projects in =~/Projects=
+
+#+BEGIN_SRC emacs-lisp
+  (projectile-discover-projects-in-directory "Projects")
+#+END_SRC
+
+Tell neotree to change directory automatically
+
+#+BEGIN_SRC emacs-lisp
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+#+END_SRC
+
+I'd like to /always/ be able to recursively fuzzy-search for files, not just
+when I'm in a Projecile-defined project. This uses the current directory as a
+project root (if I'm not in a "real" project).
+
+#+BEGIN_SRC emacs-lisp
+  (setq projectile-require-project-root nil)
+#+END_SRC
+
+** Git
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit
