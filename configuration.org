@@ -318,13 +318,20 @@ Sometimes, though, I don't wanna wrap text. This toggles wrapping with =C-c q=:
 
 ** Bazel
 
-Set =python-mode= when editing Bazel files
+Derive a new mode for Bazel from =python-mode=
 
 #+BEGIN_SRC emacs-lisp
-  (zl/add-auto-mode 'python-mode "\\.bzl$")
-  (zl/add-auto-mode 'python-mode "\\.BUILD$")
-  (zl/add-auto-mode 'python-mode "BUILD$")
-  (zl/add-auto-mode 'python-mode "WORKSPACE$")
+  (define-derived-mode zl/bazel-mode python-mode "Bazel Mode"
+    "A mode for Bazel files.")
+#+END_SRC
+
+Set =zl/bazel-mode= when editing Bazel files
+
+#+BEGIN_SRC emacs-lisp
+  (zl/add-auto-mode 'zl/bazel-mode "\\.bzl$")
+  (zl/add-auto-mode 'zl/bazel-mode "\\.BUILD$")
+  (zl/add-auto-mode 'zl/bazel-mode "BUILD$")
+  (zl/add-auto-mode 'zl/bazel-mode "WORKSPACE$")
 #+END_SRC
 
 ** Ansible
