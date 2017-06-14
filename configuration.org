@@ -408,6 +408,8 @@ I prefer to have some additional custom states for tasks.
 
 ** Exporting
 
+Create nice Twitter Bootstrap themed HTML
+
 #+BEGIN_SRC emacs-lisp
   (use-package ox-twbs
     :ensure t)
