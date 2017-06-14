@@ -349,6 +349,16 @@ Assume when editing =yaml= files it's Ansible related
   (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 #+END_SRC emacs-lisp
 
+** JSON
+
+Better mode for editing JSON files
+
+#+BEGIN_SRC emacs-lisp
+  (use-package json-mode
+    :ensure t)
+  (zl/add-auto-mode 'json-mode "\\.json.tmpl")
+#+END_SRC
+
 ** Code Snippets
 
 Use =yasnippet= for code snippets
@@ -363,7 +373,7 @@ I don’t want to automatically indent the snippets it inserts. Sometimes this l
 
 #+BEGIN_SRC emacs-lisp
   (setq yas/indent-line nil)
-#+END_SRC
+
 
 * Org-mode
 ** Display Preferences
@@ -456,7 +466,7 @@ Discover all projects in =~/Projects=
   (projectile-discover-projects-in-directory "Projects")
 #+END_SRC
 
-Tell neotree to change directory automatically
+Tell neotree to change directory automatically and reset the magit project.
 
 #+BEGIN_SRC emacs-lisp
   (setq projectile-switch-project-action 'neotree-projectile-action)
