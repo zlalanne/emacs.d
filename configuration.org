@@ -356,7 +356,7 @@ Use =yasnippet= for code snippets
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
-    :init (yas-global-mode 1)))
+    :init (yas-global-mode 1))
 #+END_SRC
 
 I don’t want to automatically indent the snippets it inserts. Sometimes this looks pretty bad (when indenting org-mode, for example, or trying to guess at the correct indentation for Python).
@@ -438,7 +438,7 @@ Use projectile to better manage projects
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :ensure t
-    :init (projectile-global-mode)))
+    :init (projectile-global-mode))
 #+END_SRC
 
 Setup projectile/Helm integration
