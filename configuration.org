@@ -349,6 +349,22 @@ Assume when editing =yaml= files it's Ansible related
   (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 #+END_SRC emacs-lisp
 
+** Code Snippets
+
+Use =yasnippet= for code snippets
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :init (yas-global-mode 1)))
+#+END_SRC
+
+I don’t want to automatically indent the snippets it inserts. Sometimes this looks pretty bad (when indenting org-mode, for example, or trying to guess at the correct indentation for Python).
+
+#+BEGIN_SRC emacs-lisp
+  (setq yas/indent-line nil)
+#+END_SRC
+
 * Org-mode
 ** Display Preferences
 
@@ -419,8 +435,8 @@ Use projectile to better manage projects
 
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
-    :ensure t)
-  (projectile-global-mode)
+    :ensure t
+    :init (projectile-global-mode)))
 #+END_SRC
 
 Setup projectile/Helm integration
