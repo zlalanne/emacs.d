@@ -373,7 +373,7 @@ I don’t want to automatically indent the snippets it inserts. Sometimes this l
 
 #+BEGIN_SRC emacs-lisp
   (setq yas/indent-line nil)
-
+#+END_SRC
 
 * Org-mode
 ** Display Preferences
