@@ -307,6 +307,53 @@ Sometimes, though, I don't wanna wrap text. This toggles wrapping with =C-c q=:
   (global-set-key (kbd "C-c q") 'auto-fill-mode)
 #+END_SRC
 
+** Switch and rebalance windows when splitting
+
+When splitting a window, I invariably want to switch to the new window. This
+makes that automatic.
+
+#+BEGIN_SRC emacs-lisp
+  (defun zl/split-window-below-and-switch ()
+    "Split the window horizontally, then switch to the new pane."
+    (interactive)
+    (split-window-below)
+    (balance-windows)
+    (other-window 1))
+
+  (defun zl/split-window-right-and-switch ()
+    "Split the window vertically, then switch to the new pane."
+    (interactive)
+    (split-window-right)
+    (balance-windows)
+    (other-window 1))
+
+  (global-set-key (kbd "C-x 2") 'zl/split-window-below-and-switch)
+  (global-set-key (kbd "C-x 3") 'zl/split-window-right-and-switch)
+#+END_SRC
+
+** Split horizontally for temporary buffers
+
+Horizonal splits are nicer for me, since I usually use a wide monitor. This is
+handy for handling temporary buffers (like compilation or test output).
+
+#+BEGIN_SRC emacs-lisp
+  (defun zl/split-horizontally-for-temp-buffers ()
+    (when (one-window-p t)
+      (split-window-horizontally)))
+
+  (add-hook 'temp-buffer-window-setup-hook
+            'zl/split-horizontally-for-temp-buffers)
+#+END_SRC
+
+** Better window management using vim keybindings
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "J") 'windmove-down)
+  (global-set-key (kbd "H") 'windmove-left)
+  (global-set-key (kbd "K") 'windmove-up)
+  (global-set-key (kbd "L") 'windmove-right)
+#+END_SRC
+
 * Programming
 ** Flycheck
 
