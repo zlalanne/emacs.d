@@ -482,11 +482,6 @@ it to work right now.
   (add-hook 'projectile-after-switch-project-hook 'zl/setup-project)
 #+END_SRC
 
-Add hook after switching projects to setup neotree
-
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
-
 I'd like to /always/ be able to recursively fuzzy-search for files, not just
 when I'm in a Projecile-defined project. This uses the current directory as a
 project root (if I'm not in a "real" project).
