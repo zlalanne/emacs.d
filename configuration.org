@@ -513,10 +513,20 @@ Discover all projects in =~/Projects=
   (projectile-discover-projects-in-directory "Projects")
 #+END_SRC
 
-Tell neotree to change directory automatically and reset the magit project.
+Tell projectile to launch find file after switching projects and setup neotree
+to use the new project root. Move the cursor to another window after setting
+up neotree.
+
+Ideally, I'd like to show the neotree pane while using find file, but can't get
+it to work right now.
 
 #+BEGIN_SRC emacs-lisp
-  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (defun zl/setup-project ()
+    (neotree-dir (projectile-project-root))
+    (other-window 1))
+
+  (setq projectile-switch-project-action 'helm-projectile-find-file)
+  (add-hook 'projectile-after-switch-project-hook 'zl/setup-project)
 #+END_SRC
 
 I'd like to /always/ be able to recursively fuzzy-search for files, not just
