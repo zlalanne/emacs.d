@@ -199,6 +199,14 @@ Highlight any trailing whitespace. Set the background color to the "Solarized Da
   (setq-default show-trailing-whitespace t)
 #+END_SRC
 
+** Highlight delimiters based on their depth
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+END_SRC
+
 * Sidebar Tree
 ** Nice Icons
 
@@ -397,6 +405,20 @@ Better mode for editing JSON files
   (use-package json-mode
     :ensure t)
   (zl/add-auto-mode 'json-mode "\\.json.tmpl")
+#+END_SRC
+
+** CSS
+
+Indent 2 spaces for css and use =rainbow-mode= to display color-related words in
+the color they describe.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :ensure t)
+  (add-hook 'css-mode-hook
+            (lambda ()
+              (rainbow-mode)
+              (setq css-indent-offset 2)))
 #+END_SRC
 
 ** Code Snippets
